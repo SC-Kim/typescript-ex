@@ -88,6 +88,8 @@ function getStatusMessage(status) {
             return "작업이 진행 중입니다.";
         case TaskStatus.Completed:
             return "작업이 완료되었습니다.";
+        default:
+            return "알 수 없는 상태입니다.";
     }
 }
 // 테스트 코드
@@ -118,7 +120,7 @@ var TaskStatus1;
     TaskStatus1["Pending"] = "Pending";
     TaskStatus1["InProgress"] = "InProgress";
     TaskStatus1["Completed"] = "Completed";
-    TaskStatus1["Failed"] = "Failted";
+    TaskStatus1["Failed"] = "Failed";
 })(TaskStatus1 || (TaskStatus1 = {}));
 function processTask(status, input) {
     // 여기에 구현
@@ -131,11 +133,11 @@ function processTask(status, input) {
             case TaskStatus1.Completed:
                 return "완료: " + input;
             case TaskStatus1.Failed:
-                return "에러: 작업이 실패했습니다.";
+                throw new Error("작업이 실패했습니다.");
         }
     }
     else
-        return "에러: 입력값은 문자열이어야 합니다.";
+        throw new Error("에러: 입력값은 문자열이어야 합니다.");
 }
 // 테스트 코드
 console.log(processTask(TaskStatus1.Pending, "task1"));

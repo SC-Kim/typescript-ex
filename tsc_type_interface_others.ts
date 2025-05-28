@@ -52,7 +52,6 @@ const user2:TUser1 = {
   },
 };
 
-
 // 문제 3. 아래 조건에 따라 인터페이스를 확장하세요.
 // 기본적으로 사용자 정보를 나타내는 User 인터페이스를 만드세요. (id, name, email?)
 // 관리자 정보를 나타내는 Admin 인터페이스를 만들되, User 인터페이스를 확장하세요. 관리자는 추가적으로 role 속성을 가집니다. (role: 문자열)
@@ -219,19 +218,21 @@ enum TaskStatus {
     Completed = "Completed"
 }
 
-
 function getStatusMessage(status: TaskStatus): string {
 
     // 여기에 구현
     switch (status) {
         case TaskStatus.Pending:
-            return "작업이 대기 중입니다."
+            return "작업이 대기 중입니다.";
 
         case TaskStatus.InProgress:
-            return "작업이 진행 중입니다."
+            return "작업이 진행 중입니다.";
 
         case TaskStatus.Completed:
-            return "작업이 완료되었습니다."
+            return "작업이 완료되었습니다.";
+
+        default:
+            return "알 수 없는 상태입니다.";
     }
 }
   
@@ -268,7 +269,7 @@ enum TaskStatus1 {
     Pending = "Pending",
     InProgress = "InProgress",
     Completed = "Completed",
-    Failed = "Failted"
+    Failed = "Failed"
 }
 
 function processTask(status: TaskStatus1, input: unknown): string {
@@ -285,10 +286,10 @@ function processTask(status: TaskStatus1, input: unknown): string {
                 return "완료: " + input
 
             case TaskStatus1.Failed:
-                return "에러: 작업이 실패했습니다."
+                throw new Error("작업이 실패했습니다.");
         }
     }
-    else return "에러: 입력값은 문자열이어야 합니다."
+    else throw new Error("에러: 입력값은 문자열이어야 합니다.");
 
 }
   
